@@ -21,6 +21,7 @@ def get_chat_id(url):
         return id_list
     except:
         print("你这链接有问题啊")
+        return id_list
 
 
 def get_video_urls(url, sort):

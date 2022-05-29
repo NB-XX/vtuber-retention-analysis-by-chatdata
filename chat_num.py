@@ -1,5 +1,3 @@
-from unittest import result
-import pandas as pd
 import numpy as np
 
 
@@ -10,13 +8,17 @@ def stream_stats(id_list):
     return result
 
 
-def retention(id_list_a, id_list_b):
+def retention(id_list_a, id_list_b, isNew):
     try:
         old_num = float(len(np.unique(id_list_a)))
+        new_num = float(len(np.unique(id_list_b)))
         set_id = list(set(id_list_a) & set(id_list_b))
         retention_num = float(len(set_id))
-        percentage = "%.2f%%" % (retention_num/old_num * 100)
-        result = [retention_num, percentage]
+        if isNew:
+            percentage = "%.2f%%" % (retention_num/old_num * 100)
+        else:
+            percentage = "%.2f%%" % (retention_num/new_num * 100)
+        result = [retention_num, percentage, new_num, old_num]
         return result
     except:
         print('可能传入了没有评论区的数据')
