@@ -1,1 +1,3 @@
 # vtuber-retention-analysis-by-chatdata
+## 还没想好写点啥……
+自用小脚本
