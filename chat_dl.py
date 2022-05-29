@@ -28,7 +28,7 @@ def get_video_urls(url, sort):
         r'd:\code\chromedriver_win32\chromedriver.exe'))
     video_link_list = []
     # 设置排序模式
-    if sort == 'old':
+    if sort == 'new':
         full_url = f'{url}/videos?view=0&sort=da&flow=grid'
     else:
         full_url = f'{url}/videos?view=0&sort=dd&flow=grid'
