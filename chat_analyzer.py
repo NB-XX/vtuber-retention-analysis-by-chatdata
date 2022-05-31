@@ -105,7 +105,7 @@ def analyzer_group_data(group_dic, isNew):
 
 def read_all_id_data(name, group):
     id_lis_dic = {}
-    for i in range(5):
+    for i in range(8):
         id_lis_dic[i] = id_list_file_open(
             f'./{group}_data/new/{name}_{i}_id_list.txt')
         print(f"第{i+1}条已写入成功")
@@ -144,30 +144,37 @@ def niji_holo_contact(new_channel, group):
 
 
 # 单独计算新人V的留存率
-for k in holox_channel:
-    id_lis_dic = read_all_id_data(k, 'hololive')
-    analyzer_start(id_lis_dic, k)
+# for k in holox_channel:
+#     id_lis_dic = read_all_id_data(k, 'hololive')
+#     analyzer_start(id_lis_dic, k)
 
 
 # niji_holo_contact(niji_new_channel, 'nijisanji')
 # niji_holo_contact(holox_channel, 'hololive')
 
+# 单独下载没下载成功的chat
+# name = 'salome'
+# url = 'https://www.youtube.com/watch?v=gIdJ0Gn9O24'
+# i = 7
+# id_list = chat_dl.get_chat_id(url)
+# with open(f'{name}_{i}_id_list.txt', 'w', encoding='utf-8') as f:
+#     f.write(json.dumps(id_list))
 
 # 单独计算salome所有直播的观众来源
-# result = niji_holo_old()
-# id_lis_dic = read_all_id_data('Salome')
-# for k in id_lis_dic:
-#     id_lis_dic[k]
-#     result_retention = chat_num.retention(
-#         result[1], id_lis_dic[k], False)
-#     with open(f'Salome的第{k+1}次直播观众来源数据结果.txt', 'a') as f:
-#         f.write(
-#             f'共统计nijisanji的观众池{result_retention[3]}人，首播{result_retention[2]}人，重合了{result_retention[0]}人，重合度{result_retention[1]}\n')
-#     result_retention = chat_num.retention(
-#         result[0], id_lis_dic[k], False)
-#     with open(f'Salome的第{k+1}次直播观众来源数据结果.txt', 'a') as f:
-#         f.write(
-#             f'共统计hololive的观众池{result_retention[3]}人，首播{result_retention[2]}人，重合了{result_retention[0]}人，重合度{result_retention[1]}\n')
+result = niji_holo_old()
+id_lis_dic = read_all_id_data('Salome', 'nijisanji')
+for k in id_lis_dic:
+    id_lis_dic[k]
+    result_retention = chat_num.retention(
+        result[1], id_lis_dic[k], False)
+    with open(f'Salome的第{k+1}次直播观众来源数据结果.txt', 'a') as f:
+        f.write(
+            f'共统计nijisanji的观众池{result_retention[3]}人，首播{result_retention[2]}人，重合了{result_retention[0]}人，重合度{result_retention[1]}\n')
+    result_retention = chat_num.retention(
+        result[0], id_lis_dic[k], False)
+    with open(f'Salome的第{k+1}次直播观众来源数据结果.txt', 'a') as f:
+        f.write(
+            f'共统计hololive的观众池{result_retention[3]}人，首播{result_retention[2]}人，重合了{result_retention[0]}人，重合度{result_retention[1]}\n')
 
 
 # 计算下虹杏一家亲程度
@@ -179,11 +186,3 @@ for k in holox_channel:
 # analyzer_group_data(niji_new_channel, True)
 # analyzer_group_data(holo_channel, False)
 # analyzer_group_data(niji_channel, False)
-
-# 单独下载没下载成功的chat
-# name = 'Yotsuha'
-# url = 'https://www.youtube.com/watch?v=55N_-HJaFoc'
-# i = 1
-# id_list = chat_dl.get_chat_id(url)
-# with open(f'{name}_{i}_id_list.txt', 'w', encoding='utf-8') as f:
-#     f.write(json.dumps(id_list))
