@@ -44,3 +44,17 @@ def get_video_urls(url, sort):
         return video_link_list[:5]
     except:
         print('好像妹找到有视频')
+
+
+def get_sc_stats(url):
+    sc_datas = []
+    try:
+        sc_chat = ChatDownloader().get_chat(url, message_groups=['superchat'])
+        print("chat获取成功，正在解析SC详情")
+        for message in sc_chat:
+            id = message['author']['id']
+            sc_datas.append(id)
+        return sc_datas
+    except:
+        print("你这链接有问题啊")
+        return sc_datas

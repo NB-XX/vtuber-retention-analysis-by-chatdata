@@ -105,7 +105,7 @@ def analyzer_group_data(group_dic, isNew):
 
 def read_all_id_data(name, group):
     id_lis_dic = {}
-    for i in range(8):
+    for i in range(10):
         id_lis_dic[i] = id_list_file_open(
             f'./{group}_data/new/{name}_{i}_id_list.txt')
         print(f"第{i+1}条已写入成功")
@@ -154,12 +154,15 @@ def niji_holo_contact(new_channel, group):
 
 # 单独下载没下载成功的chat
 # name = 'salome'
-# url = 'https://www.youtube.com/watch?v=gIdJ0Gn9O24'
-# i = 7
+# url = 'https://www.youtube.com/watch?v=TiAwdnuch0Q'
+# i = 8
 # id_list = chat_dl.get_chat_id(url)
 # with open(f'{name}_{i}_id_list.txt', 'w', encoding='utf-8') as f:
 #     f.write(json.dumps(id_list))
-
+# i = 'sc'
+# id_list = chat_dl.get_sc_stats(url)
+# with open(f'{name}_{i}_id_list.txt', 'w', encoding='utf-8') as f:
+#     f.write(json.dumps(id_list))
 # 单独计算salome所有直播的观众来源
 result = niji_holo_old()
 id_lis_dic = read_all_id_data('Salome', 'nijisanji')
@@ -186,3 +189,22 @@ for k in id_lis_dic:
 # analyzer_group_data(niji_new_channel, True)
 # analyzer_group_data(holo_channel, False)
 # analyzer_group_data(niji_channel, False)
+
+def melisa_salome():
+    melisa_id_list_full = []
+    melisa_id_list_full.extend(id_list_file_open(
+        f'./melissa_0_id_list.txt'))
+    salome_id_list_full = []
+    salome_id_list_full.extend(id_list_file_open(
+        f'./nijisanji_data/new/salome_7_id_list.txt'))
+    result = [salome_id_list_full, melisa_id_list_full]
+    return result
+
+
+# result = melisa_salome()
+# result2 = chat_num.retention(result[0], result[1], True)
+# for i in result2:
+#     print(i)
+# result2 = chat_num.retention(result[0], result[1], False)
+# for i in result2:
+#     print(i)
